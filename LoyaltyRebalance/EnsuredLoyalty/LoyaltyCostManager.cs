@@ -5,6 +5,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using AllegianceOverhaul.Extensions;
+using System.Collections.Generic;
 
 namespace AllegianceOverhaul.LoyaltyRebalance.EnsuredLoyalty
 {
@@ -164,7 +165,7 @@ namespace AllegianceOverhaul.LoyaltyRebalance.EnsuredLoyalty
 
       TextObject InquiryBody = new TextObject(PlayerInquiryBody);
       InquiryBody.SetTextVariable("LEAVING_CLAN", LeavingClan.Name);
-      InquiryBody.SetTextVariable("ACTION_DESCRIPTION", TargetKingdom != null ? new TextObject(ActionDefecting).SetTextVariable("TARGET_KINGDOM", TargetKingdom.Name).ToString() : ActionLeaving);
+      InquiryBody.SetTextVariable("ACTION_DESCRIPTION", TargetKingdom != null ? new TextObject(ActionDefecting, new Dictionary<string, TextObject>() { ["TARGET_KINGDOM"] = TargetKingdom.Name }) : new TextObject(ActionLeaving));
       InquiryBody.SetTextVariable("INFLUENCE_COST", WithholdCost.InfluenceCost.ToString("N0"));
       InquiryBody.SetTextVariable("GOLD_COST", WithholdCost.GoldCost.ToString("N0"));
 
